@@ -530,7 +530,7 @@ textarea:focus, input:focus{
 
 
 /* animation */
-#frame-1, #frame-2, #frame-3, #frame-4, #credits, #title h2, #input-form, #calibration-zoom
+#frame-1, #frame-2, #frame-3, #frame-4, #credits, #title h2, #input-form, #calibration-zoom, #device-info, #calibrationIcon, #calibrationButtons
 {
 	transition: all .4s ease-out;
 }
@@ -566,7 +566,7 @@ textarea:focus, input:focus{
 	{ transform: scale(.95); }
 
 	#calibrationIcon, #calibrationButtons
-	{ transform: scale(1.1); }
+	{ transform: scale(1.05); }
 }
 
 /* xs */
@@ -584,7 +584,7 @@ textarea:focus, input:focus{
 	{ transform: scale(.9); }
 
 	#calibrationIcon, #calibrationButtons
-	{ transform: scale(1.2); }
+	{ transform: scale(1.1); }
 }
 
 
