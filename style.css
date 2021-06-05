@@ -560,13 +560,13 @@ textarea:focus, input:focus{
 	{ transform: scale(.5); }
 
 	#input-form, #calibration-zoom
-	{ transform: scale(1.2); }
+	{ transform: scale(1.1); }
 
 	#device-info
-	{ transform: scale(.85); }
+	{ transform: scale(.95); }
 
 	#calibrationIcon, #calibrationButtons
-	{ transform: scale(1.2); }
+	{ transform: scale(1.1); }
 }
 
 /* xs */
@@ -578,13 +578,13 @@ textarea:focus, input:focus{
 	{ opacity: 0; }
 
 	#input-form, #calibration-zoom
-	{ transform: scale(1.4); }
+	{ transform: scale(1.2); }
 
 	#device-info
-	{ transform: scale(.7); }
+	{ transform: scale(.9); }
 
 	#calibrationIcon, #calibrationButtons
-	{ transform: scale(1.4); }
+	{ transform: scale(1.2); }
 }
 
 
