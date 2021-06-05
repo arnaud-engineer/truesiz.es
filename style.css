@@ -173,6 +173,7 @@ body
 	top: 0;
 	left: 0;
 
+	margin: 38px; /* for old ios devices */
 	margin: max(38px, 4%);/*48px;*/
 
 	/*width: 200px;
@@ -223,6 +224,7 @@ body
 	top: 0;
 	right: 0;
 
+	margin: 38px; /* for old ios devices */
 	margin: max(38px, 4%);/*48px;*/
 
 	color: darkgrey;
@@ -332,6 +334,7 @@ form input
 	bottom: 0;
 	right: 0;
 
+	margin: 38px; /* for old ios devices */
 	margin: max(38px, 4%);/*48px;*/
 }
 
@@ -426,6 +429,7 @@ form input
 	bottom: 0;
 	left: 0;
 
+	margin: 38px; /* for old ios devices */
 	margin: max(38px, 4%);/*48px;*/
 
 	/*background-color: yellow;*/
