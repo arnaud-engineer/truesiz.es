@@ -381,8 +381,8 @@
 
 			function setCalibrationStatus(s)
 			{
-				let warningMsg = "check your screen calibration (confirm your model or verify the frame fits a credit card)<br/><br/>else, proceed manual calibration<br/><br/>";
-				let basicInstructionMsg = "enter a width and an height to change my size";
+				let warningMsg = "<p>check your screen calibration (confirm your model or verify the frame fits a credit card)</p><p>else, proceed manual calibration</p>";
+				let basicInstructionMsg = "<p>enter a width and an height to change my size</p>";
 				if (s === 4) {
 					cScreen.calibrationStatus = 4;
 					document.getElementById("calibrationIconImg").setAttribute("src", "rsrc/img/valid-icon.svg");
