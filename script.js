@@ -678,7 +678,7 @@
 			setInterval(function(){
 				//var t = window.screen.width * window.devicePixelRatio;
 				 // if screen change and currently not calibrating
-				if((window.screen.width * window.devicePixelRatio != cScreen.wRes || window.screen.height * window.devicePixelRatio != cScreen.hRes) && screen.calibrationStatus != -1) {
+				if( ( (window.screen.width * window.devicePixelRatio != cScreen.wRes || window.screen.height * window.devicePixelRatio != cScreen.hRes) || (window.screen.height * window.devicePixelRatio != cScreen.wRes || window.screen.width * window.devicePixelRatio != cScreen.hRes) ) && screen.calibrationStatus != -1) {
 					cScreen = new Screen();
 					deviceRetrieval();
 					console.log((window.screen.width * window.devicePixelRatio) + " - " + cScreen.wRes);
