@@ -530,7 +530,7 @@ textarea:focus, input:focus{
 
 
 /* animation */
-#frame-1, #frame-2, #frame-3, #frame-4, #credits, #title h2
+#frame-1, #frame-2, #frame-3, #frame-4, #credits, #title h2, #input-form, #calibration-zoom
 {
 	transition: all .4s ease-out;
 }
@@ -543,8 +543,10 @@ textarea:focus, input:focus{
 
 	#frame-1 { transform-origin: top left; }
 	#frame-2 { transform-origin: top right; }
-	#frame-3 { transform-origin: bottom right; }
-	#frame-4 { transform-origin: bottom left; }
+	#frame-3, #calibration-zoom, #input-form
+	{ transform-origin: bottom right; }
+	#frame-4, #device-info, #calibrationIcon, #calibrationButtons
+	{ transform-origin: bottom left; }
 
 /* md */
 @media (max-width: 1200px) {
@@ -556,6 +558,15 @@ textarea:focus, input:focus{
 @media (max-width: 992px) {
 	#frame-1, #frame-2, #frame-3, #frame-4
 	{ transform: scale(.5); }
+
+	#input-form, #calibration-zoom
+	{ transform: scale(1.2); }
+
+	#device-info
+	{ transform: scale(.85); }
+
+	#calibrationIcon, #calibrationButtons
+	{ transform: scale(1.2); }
 }
 
 /* xs */
@@ -565,14 +576,16 @@ textarea:focus, input:focus{
 
 	#credits, #title h2
 	{ opacity: 0; }
-}
 
-/* xxs */
-@media (max-width: 450px) {
-	#frame-1, #frame-2, #frame-3, #frame-4
-	{ transform: scale(.15); }
-}
+	#input-form, #calibration-zoom
+	{ transform: scale(1.4); }
 
+	#device-info
+	{ transform: scale(.7); }
+
+	#calibrationIcon, #calibrationButtons
+	{ transform: scale(1.4); }
+}
 
 
 
