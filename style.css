@@ -4,6 +4,8 @@
 
 	* { margin: 0; padding: 0; box-sizing: border-box; }
 
+	* { -webkit-tap-highlight-color: transparent; }
+
 	body
 	{
 		font-family: "Helvetica", "Roboto", "Droid Sans", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Arial", system-ui, -apple-system, BlinkMacSystemFont, Sans-serif;
@@ -177,7 +179,7 @@
 			overflow: visible;
 		}
 
-			#title h1
+			#title h1, #title h1 a, #title h1 a:active
 			{
 				font-size: 52px;
 				letter-spacing: -2.5px;
