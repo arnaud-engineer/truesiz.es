@@ -42,7 +42,7 @@
 
 		<header>
 			<div id="title">
-				<h1>truesiz.es</h1>
+				<h1><a href="#">truesiz.es</a></h1>
 				<h2>size does matter</h2>
 			</div>
 			<div id="credits">
@@ -56,7 +56,6 @@
 			<div id="square">
 				<div id="instructions">
 					<noscript>JavaScript is currently disabled on your browser, but truesiz.es can't works without it : <a href="https://www.enable-javascript.com">See how to enable it</a></noscript>
-					<h1></h1>
 				</div>
 				<div id="calibrationTools">
 					<div>
@@ -95,8 +94,9 @@
 						<option value="cm">cm</option>
 						<option value="inches">inches</option>
 					</select>
-					<div class="full-input"><label>width</label><input id="xVal" onkeyup="changeX(this);" type="number" required name="x" min="0" step=".1" autocomplete="off" placeholder="10.0"></div>
-					<div class="full-input"><label>height</label><input id="yVal" onkeyup="changeY(this);" type="number" required name="y" min="0" step=".1" autocomplete="off" placeholder="10.0"></div>
+					<div class="full-input"><label>width</label><input id="xVal" onkeyup="changeX(this);" oninput="changeX(this);" type="number" required name="x" min="0" step=".1" autocomplete="off" placeholder="10.0"></div>
+					<div class="full-input"><label>height</label><input id="yVal" onkeyup="changeY(this);" oninput="changeY(this);" type="number" required name="y" min="0" step=".1" autocomplete="off" placeholder="10.0"></div>
+					<div id="fullscreen-button" onmousedown="goFullScreen();"><img src="rsrc/img/fullscreen-icon.svg"/></div>
 				</form>
 			</div>
 			<div id="calibration-zoom">
