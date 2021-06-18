@@ -39,7 +39,7 @@
 				this.deviceFamily = "";
 				// Screen data
 				this.diagonal = null;
-				this.dpi = "";
+				this.ppi = "";
 				this.builtIn = false;
 				// Resolution data
 				this.dppx = window.devicePixelRatio;
@@ -101,19 +101,19 @@
 	========================================================================= */
 
 	/*  ----------------------------------------
-		 DPI CALCULATION
+		 PPI CALCULATION
 		---------------------------------------- */
 
-		function dpiCalculation()
+		function ppiCalculation()
 		{
 			let diagonalInPixels = Math.sqrt(Math.pow(cScreen.hRes, 2) + Math.pow(cScreen.wRes, 2)); // Pythagoras
 			let wResInches = cScreen.wRes * cScreen.diagonal / diagonalInPixels;// cross-multiplication
-			let dpi = cScreen.wRes / wResInches;
-			return dpi;
+			let ppi = cScreen.wRes / wResInches;
+			return ppi;
 		}
 
-		function dpcmCalculation()
-		{ return 0.3937008 * dpiCalculation(); }
+		function ppcmCalculation()
+		{ return 0.3937008 * ppiCalculation(); }
 
 
 	/*  ----------------------------------------
@@ -121,10 +121,10 @@
 		---------------------------------------- */
 
 		function realInch(x=1)
-		{ return x * dpiCalculation() / cScreen.dppx + "px"; }
+		{ return x * ppiCalculation() / cScreen.dppx + "px"; }
 
 		function realCm(x=1)
-		{ return x * dpcmCalculation() / cScreen.dppx + "px"; }
+		{ return x * ppcmCalculation() / cScreen.dppx + "px"; }
 
 
 /*  =========================================================================
@@ -174,7 +174,7 @@
 					// INTERFACE DATA UPDATE
 					cScreen.name = detectedScreen.name;
 					cScreen.diagonal = detectedScreen.screenSize;
-					cScreen.dpi = detectedScreen.dpi;
+					cScreen.ppi = detectedScreen.ppi;
 					cScreen.builtIn = detectedScreen.builtIn;
 					setCalibrationStatus(detectedScreen.confidence);
 				}
@@ -198,8 +198,8 @@
 					if(key.includes("screen"))
 					{
 						console.log("SAVE EDIT : " + key + " => " + value.name);
-						// TODO : SEEMS UNABLE TO DETECT ROTATED SCREEN
-						if(value.wRes == cScreen.wRes || value.hRes == cScreen.hRes)
+						// TODO : TEST IF ABLE TO DETECT ROTATED SCREEN
+						if( (value.wRes == cScreen.wRes || value.hRes == cScreen.wRes) && (value.wRes == cScreen.hRes || value.hRes == cScreen.hRes))
 						{
 							localStorage.setItem(key, JSON.stringify(cScreen));
 							currentScreenIsNew = false;
@@ -244,7 +244,7 @@
 						console.log("SAVE READ : " + key + " => " + value.name);
 						if (value.builtIn === true)
 							builtInScreenAlreadyFound = true;
-						// TODO : SEEMS UNABLE TO DETECT ROTATED SCREEN
+						// TODO : TEST IF ABLE TO DETECT ROTATED SCREEN
 						if( (value.wRes == cScreen.wRes || value.hRes == cScreen.wRes) && (value.wRes == cScreen.hRes || value.hRes == cScreen.hRes))
 						{
 							currentScreenIsNew = false;
@@ -253,7 +253,7 @@
 								cScreen.name = value.name;
 								cScreen.deviceFamily = value.deviceFamily;
 								cScreen.diagonal = value.diagonal;
-								cScreen.dpi = value.dpi;
+								cScreen.ppi = value.ppi;
 								cScreen.builtIn = value.builtIn;
 								cScreen.dppx = value.dppx;
 								cScreen.wRes = value.wRes;
@@ -433,7 +433,7 @@
 					document.getElementById("reset-button").style.display = "block";
 					document.getElementById("instructions").innerHTML = basicInstructionMsg;
 				}
-				localSaveEdit(); // TODO : usefull ?
+				localSaveEdit();
 			}
 
 		/*  ---------------
@@ -517,6 +517,7 @@
 					// Update calibration data
 					document.getElementById("deviceScreenSize").textContent = cScreen.diagonal.toFixed(1) + " inch.";
 				}
+				updateGraduations();
 			}
 
 			function changeResolutionOnKeyPress(event)
@@ -534,10 +535,11 @@
 					// apply new diagonal
 					cScreen.diagonal = newdiagonal;
 					// update the frame size
-					changeCalibrationObject(); // TODO : do not rotate
+					changeCalibrationObject();
 					// Update calibration data
 					document.getElementById("deviceScreenSize").textContent = cScreen.diagonal.toFixed(1) + " inch.";
 				}
+				updateGraduations();
 			}
 
 			function changeResolutionOnButton(event)
@@ -557,6 +559,7 @@
 					// Update calibration data
 					document.getElementById("deviceScreenSize").textContent = cScreen.diagonal.toFixed(1) + " inch.";
 				}
+				updateGraduations();
 			}
 
 
@@ -574,6 +577,8 @@
 				document.getElementById("deviceScreenSize").textContent = cScreen.diagonal + " inch.";
 				// Turn off calibration mode
 				calibrationModeOff();
+				// 
+				updateGraduations();
 			}
 
 
@@ -678,6 +683,11 @@
 				document.getElementById("square").style.height = "min(100vh - 60px, 70vh, 600px)";
 
 				document.getElementById("app-settings-button").setAttribute("onmousedown", "endUserPreferences();");
+
+				// lock inputs
+				document.getElementById("yVal").setAttribute("disabled", "true");
+				document.getElementById("xVal").setAttribute("disabled", "true");
+				document.getElementById("sizeUnit").setAttribute("disabled", "true");
 			}
 
 			function endUserPreferences()
@@ -690,7 +700,10 @@
 
 				document.getElementById("app-settings-button").setAttribute("onmousedown", "goUserPreferences();");
 
-				// TODO : missing instructions
+				// unlock inputs
+				document.getElementById("yVal").removeAttribute("disabled");
+				document.getElementById("xVal").removeAttribute("disabled");
+				document.getElementById("sizeUnit").removeAttribute("disabled");
 			}
 
 
@@ -988,7 +1001,6 @@
 
 			//drawFrame();
 
-
 		/*  ----------------------------------------
 			 DEVICE DETECTION
 			---------------------------------------- */
@@ -1006,6 +1018,12 @@
 				}
 			}, 300);
 
+
+
+
+			// SVG loading
+			//preserveAspectRatio="xMinYMin meet" -> required in the graduations svg, add manually after illustrator export
+			//
 			updateGraduations();
 	});
 
